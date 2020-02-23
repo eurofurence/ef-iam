@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -16,8 +17,7 @@ use Spatie\Permission\Traits\RefreshesPermissionCache;
 
 class Permission extends Model implements PermissionContract
 {
-    use HasRoles;
-    use RefreshesPermissionCache;
+    use HasRoles, RefreshesPermissionCache, UsesUuid;
 
     protected $guarded = ['id'];
 

@@ -8,6 +8,10 @@ export default {
     host: '0.0.0.0' // default: localhost
   },
 
+  router: {
+    middleware: ['auth']
+  },
+
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -37,25 +41,38 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/auth'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+
+  auth: {
+    redirect: {
+      login: '/login', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: process.env.OIDC_DOMAIN,
+        client_id: process.env.OIDC_CLIENT,
+        audience: process.env.OIDC_AUDIENCE
+      }
+    }
+  },
+
   /*
    ** Build configuration
    */

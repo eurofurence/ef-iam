@@ -6,8 +6,8 @@ This Project is for providing a Identity Access Management.
 ### Requirements
 - Docker
 ```
-# git clone git@github.com:eurofurence/ef-iam.git
+git clone git@github.com:eurofurence/ef-iam.git
 ```
 ```
-# docker-compose up -d
+docker-compose up -d
 ```

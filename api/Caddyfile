@@ -1,0 +1,4 @@
+:80 {
+    php_fastcgi * api:9000
+    root * /app/public
+}

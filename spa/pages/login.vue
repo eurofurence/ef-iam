@@ -31,8 +31,8 @@
       </div>
       <div class="flex flex-col">
         <a
-          @click="$auth.login()"
           class="bg-primary-500 py-5 rounded-lg px-12 ml-auto text-white text-2xl mb-4"
+          @click="$auth.login()"
         >
           Sign in
         </a>

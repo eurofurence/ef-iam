@@ -1,0 +1,54 @@
+# IMPORTANT!
+# THIS DOCKER-COMPOSE IS ONLY TO BE USED FOR DEVELOPMENT PURPOSES NEVER FOR PRODUCTION
+version: "3.7"
+services:
+  api:
+    build:
+      context: ./api
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./api:/app
+  caddy:
+    image: caddy/caddy:alpine
+    volumes:
+      - ./api/:/app
+      - ./api/Caddyfile:/etc/caddy/Caddyfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.ef-iam.local`)"
+      - "traefik.http.routers.api.entrypoints=web"
+  spa:
+    build:
+      context: ./spa
+    env_file:
+      - ./spa/.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.spa.rule=Host(`ef-iam.local`)"
+      - "traefik.http.routers.spa.entrypoints=web"
+    volumes:
+      - ./spa:/app
+  database:
+    image: mysql:8.0.19
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: ef-iam
+    ports:
+      - 3306:3306
+    volumes:
+      - database:/var/lib/mysql
+  traefik:
+    image: "traefik:v2.1"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+volumes:
+  database:

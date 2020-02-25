@@ -3,8 +3,8 @@
 This Project is for providing a Identity Access Management.
 
 ## Installation instructions
-### Requirements
-- Docker
+**Info:** Docker is required to perform this installation
+
 1. Clone the Repository and change into the correct directory
 ```
 git clone git@github.com:eurofurence/ef-iam.git && cd ef-iam

@@ -9,7 +9,8 @@ RUN docker-php-ext-install bcmath curl iconv mbstring pdo pdo_mysql pdo_sqlite p
 RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
 RUN apk del -f .build-deps
 
-COPY . /app/
 WORKDIR /app
+COPY composer.json composer.lock ./
 
-RUN composer install --prefer-source
+RUN composer install --prefer-source --no-scripts
+COPY . /app/

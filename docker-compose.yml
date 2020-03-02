@@ -5,10 +5,13 @@ services:
   api:
     build:
       context: ./api
+      args:
+        - ENV=dev
     env_file:
       - ./api/.env
     volumes:
       - ./api:/app
+      - /app/vendor/
   caddy:
     image: caddy/caddy:alpine
     volumes:
@@ -21,6 +24,8 @@ services:
   spa:
     build:
       context: ./spa
+      args:
+        - ENV=dev
     env_file:
       - ./spa/.env
     labels:
@@ -29,6 +34,7 @@ services:
       - "traefik.http.routers.spa.entrypoints=web"
     volumes:
       - ./spa:/app
+      - /app/node_modules/
   database:
     image: mysql:8.0.19
     environment:

@@ -1,7 +1,8 @@
 FROM node:12.16
 MAINTAINER Martin Becker <kontakt@martin-becker.ovh>
 WORKDIR /app
-COPY yarn.lock package.json ./
+COPY package.json ./
+COPY yarn.lock ./
 RUN yarn install
 ADD . /app/
 ENV HOST 0.0.0.0

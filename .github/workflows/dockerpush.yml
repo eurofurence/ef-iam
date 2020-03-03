@@ -13,7 +13,6 @@ on:
 jobs:
   push-spa:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
 
@@ -44,7 +43,6 @@ jobs:
           
   push-api:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
 

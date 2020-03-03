@@ -37,7 +37,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag image $IMAGE_ID:$VERSION
+          docker tag spa $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
           
   push-api:
@@ -67,5 +67,5 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag image $IMAGE_ID:$VERSION
+          docker tag api $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION

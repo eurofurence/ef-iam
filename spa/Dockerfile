@@ -16,4 +16,4 @@ COPY . /app/
 RUN yarn build
 RUN yarn cache clean
 
-CMD [ "yarn", "start", "start" ]
+CMD [ "yarn", "start" ]

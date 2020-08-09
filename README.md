@@ -1,3 +1,8 @@
+This project is under development with a different stategy. Please contact @Thiritin t.me/thiritin for any questions regarding the project's status.
+Im happy to show you the current progress.
+
+I moved development to my closed source account for now, the iam will be as always 100% open source in the end.
+
 # Eurofurence IAM Project
 
 This Project is for providing a Identity Access Management.
